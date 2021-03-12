@@ -30,10 +30,11 @@ namespace Phase1_Final_Project
         {
             //this function is reading the data from the teacherData.txt file
             string filename = getPath();
+            Console.WriteLine("");
             if (File.Exists(filename))
             {
                 Console.WriteLine("File Exist");
-                Console.WriteLine("\nReading data from the file\n");
+                Console.WriteLine("Reading data from the file");
                 var teachers = File.ReadAllLines(filename);
                 foreach(var teacher in teachers)
                 {
