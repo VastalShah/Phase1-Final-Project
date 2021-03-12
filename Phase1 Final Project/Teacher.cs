@@ -28,6 +28,7 @@ namespace Phase1_Final_Project
             srt.WriteLine("103, Ajay Kumar, ME-A");
             srt.WriteLine("104, Surbhi Yadav, ME-B");
             srt.WriteLine("105, Rakesh Jha, PE-A");
+            srt.Close();
         }
 
         public static void ReadTecherData()
@@ -41,6 +42,37 @@ namespace Phase1_Final_Project
                     Console.WriteLine(teacher+"\n");
                 }
             }
+        }
+
+        public static bool FindAndUpdateTeacher(int id)
+        {
+            if (File.Exists(filename))
+            {
+                var teachers = File.ReadAllLines(filename);
+                for (int i = 0; i < teachers.Length; i++)
+                {
+                    string[] teacher = teachers[i].Split(", ");
+                    if(Convert.ToInt32(teacher[0]) == id)
+                    {
+                        Console.WriteLine("Enter teacher updated id");
+                        teacher[0] = Console.ReadLine();
+                        Console.WriteLine("Enter teacher updated name");
+                        teacher[1] = Console.ReadLine();
+                        Console.WriteLine("Enter teacher updated Class and Section");
+                        teacher[2] = Console.ReadLine();
+
+                        string updatedTeacher = teacher[0] + ", " + teacher[1] + ", " + teacher[2];
+                        teachers[i] = updatedTeacher;
+                        File.WriteAllLines(filename, teachers);
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("File does not exist");
+            }
+            return false;
         }
     }
 }
