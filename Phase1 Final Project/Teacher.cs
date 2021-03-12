@@ -29,5 +29,18 @@ namespace Phase1_Final_Project
             srt.WriteLine("104, Surbhi Yadav, ME-B");
             srt.WriteLine("105, Rakesh Jha, PE-A");
         }
+
+        public static void ReadTecherData()
+        {
+            if (File.Exists(filename))
+            {
+                Console.WriteLine("File Exixts");
+                var teachers = File.ReadAllLines(filename);
+                foreach(var teacher in teachers)
+                {
+                    Console.WriteLine(teacher+"\n");
+                }
+            }
+        }
     }
 }
