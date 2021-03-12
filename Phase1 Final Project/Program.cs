@@ -6,7 +6,7 @@ namespace Phase1_Final_Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Rainbow_School.Do();
         }
     }
 }
