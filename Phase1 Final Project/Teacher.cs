@@ -12,16 +12,16 @@ namespace Phase1_Final_Project
 
         public static void WriteTeacherData()
         {
-            
+            //this function is creating the file teacherData.txt and adding data into that file
             if (File.Exists(filename))
             {
-                Console.WriteLine("File Exixts");
+                Console.WriteLine("File Exist");
             }
             else
             {
                 Console.WriteLine("FIle does not exist");
             }
-            Console.WriteLine("Adding Teacher data in the file");
+            Console.WriteLine("\nAdding Teacher data in the file...");
             StreamWriter srt = File.CreateText(filename);
             srt.WriteLine("101, Madhu Sharma, CSE-A");
             srt.WriteLine("102, Amit Mishra, CSE-B");
@@ -33,9 +33,11 @@ namespace Phase1_Final_Project
 
         public static void ReadTecherData()
         {
+            //this function is reading the data from the teacherData.txt file
             if (File.Exists(filename))
             {
-                Console.WriteLine("File Exixts");
+                Console.WriteLine("File Exist");
+                Console.WriteLine("\nReading data from the file\n");
                 var teachers = File.ReadAllLines(filename);
                 foreach(var teacher in teachers)
                 {
@@ -46,6 +48,8 @@ namespace Phase1_Final_Project
 
         public static bool FindAndUpdateTeacher(int id)
         {
+            //this function firstly finds the teacher record with id
+            //if record is found then it is updating the values after taking input from user.
             if (File.Exists(filename))
             {
                 var teachers = File.ReadAllLines(filename);

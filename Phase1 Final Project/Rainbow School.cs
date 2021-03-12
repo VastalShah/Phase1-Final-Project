@@ -8,13 +8,14 @@ namespace Phase1_Final_Project
     {
         public static void Do()
         {
+            Console.WriteLine(" == Rainbow School Program == ");
             Teacher.WriteTeacherData();
             Teacher.ReadTecherData();
             Console.WriteLine("Do you want to update teacher data? (yes/no)");
             string ans = Console.ReadLine();
             if (ans == "yes")
             {
-                Console.WriteLine("Enter id of teacher to be updated");
+                Console.WriteLine("\nEnter id of teacher to be updated");
                 int id = Convert.ToInt32(Console.ReadLine());
                 var flag = Teacher.FindAndUpdateTeacher(id);
                 if (flag)
