@@ -8,25 +8,39 @@ namespace Phase1_Final_Project
     {
         public static void Do()
         {
+            string answer;
             Console.WriteLine(" == Rainbow School Program == ");
-            Teacher.WriteTeacherData();
-            Teacher.ReadTecherData();
-            Console.WriteLine("Do you want to update teacher data? (yes/no)");
-            string ans = Console.ReadLine();
-            if (ans == "yes")
+            do
             {
-                Console.WriteLine("\nEnter id of teacher to be updated");
-                int id = Convert.ToInt32(Console.ReadLine());
-                var flag = Teacher.FindAndUpdateTeacher(id);
-                if (flag)
+                Console.WriteLine("Choose an option");
+                Console.WriteLine("1.Add Teacher\n2.Print Teacher Data\n3.Update Teacher Data\n4.Exit");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
-                    Teacher.ReadTecherData();
+                    case 1:
+                        Console.WriteLine("Enter teacher id:");
+                        int idtoAdd = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter teacher name:");
+                        string nametoAdd = Console.ReadLine(); 
+                        Console.WriteLine("Enter teacher Class and Section:");
+                        string classAndSectiontoAdd = Console.ReadLine();
+                        Teacher.AddTeacherData(idtoAdd, nametoAdd, classAndSectiontoAdd);
+                        break;
+                    case 2:
+                        Teacher.ReadTeacherData();
+                        break;
+                    case 3:
+                        Console.WriteLine("\nEnter id of teacher to be updated");
+                        int idtoUpdate = Convert.ToInt32(Console.ReadLine());
+                        Teacher.FindAndUpdateTeacher(idtoUpdate);
+                        break;
+                    case 4:
+                        Environment.Exit(0);
+                        break;
                 }
-                else
-                {
-                    Console.WriteLine("No such teacher record found");
-                }
-            }
+                Console.WriteLine("Do you want to continue? (yes/no)");
+                answer = Console.ReadLine();
+            } while (answer == "yes");
         }
     }
 }
