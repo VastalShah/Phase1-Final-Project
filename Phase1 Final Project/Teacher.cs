@@ -7,33 +7,29 @@ namespace Phase1_Final_Project
 {
     class Teacher
     {
-        public static string dir = Directory.GetCurrentDirectory();
-        public static string filename = dir + "\\teacherData.txt";
-
-        public static void WriteTeacherData()
+        public static string getPath()
         {
-            //this function is creating the file teacherData.txt and adding data into that file
+            string dir = Directory.GetCurrentDirectory();
+            string filename = dir + "\\teacherData.txt";
+            return filename;
+        }
+        
+        public static void AddTeacherData(int id, string name, string classAndSection)
+        {
+            string teacher = id.ToString() + ", " + name + ", " + classAndSection;
+            string filename = getPath();
+            List<string> t = new List<string>();
+            t.Add(teacher);
             if (File.Exists(filename))
             {
-                Console.WriteLine("File Exist");
+                File.AppendAllLines(filename, t);
             }
-            else
-            {
-                Console.WriteLine("FIle does not exist");
-            }
-            Console.WriteLine("\nAdding Teacher data in the file...");
-            StreamWriter srt = File.CreateText(filename);
-            srt.WriteLine("101, Madhu Sharma, CSE-A");
-            srt.WriteLine("102, Amit Mishra, CSE-B");
-            srt.WriteLine("103, Ajay Kumar, ME-A");
-            srt.WriteLine("104, Surbhi Yadav, ME-B");
-            srt.WriteLine("105, Rakesh Jha, PE-A");
-            srt.Close();
         }
 
-        public static void ReadTecherData()
+        public static void ReadTeacherData()
         {
             //this function is reading the data from the teacherData.txt file
+            string filename = getPath();
             if (File.Exists(filename))
             {
                 Console.WriteLine("File Exist");
@@ -46,10 +42,11 @@ namespace Phase1_Final_Project
             }
         }
 
-        public static bool FindAndUpdateTeacher(int id)
+        public static void FindAndUpdateTeacher(int id)
         {
             //this function firstly finds the teacher record with id
             //if record is found then it is updating the values after taking input from user.
+            string filename = getPath();
             if (File.Exists(filename))
             {
                 var teachers = File.ReadAllLines(filename);
@@ -68,7 +65,6 @@ namespace Phase1_Final_Project
                         string updatedTeacher = teacher[0] + ", " + teacher[1] + ", " + teacher[2];
                         teachers[i] = updatedTeacher;
                         File.WriteAllLines(filename, teachers);
-                        return true;
                     }
                 }
             }
@@ -76,7 +72,29 @@ namespace Phase1_Final_Project
             {
                 Console.WriteLine("File does not exist");
             }
-            return false;
+        }
+
+        public static void WriteTeacherData()
+        {
+            //this function is creating the file teacherData.txt and adding data into that file
+            string filename = getPath();
+
+            if (File.Exists(filename))
+            {
+                Console.WriteLine("File Exist");
+            }
+            else
+            {
+                Console.WriteLine("FIle does not exist");
+            }
+            Console.WriteLine("\nAdding Teacher data in the file...");
+            StreamWriter srt = File.CreateText(filename);
+            srt.WriteLine("101, Madhu Sharma, CSE-A");
+            srt.WriteLine("102, Amit Mishra, CSE-B");
+            srt.WriteLine("103, Ajay Kumar, ME-A");
+            srt.WriteLine("104, Surbhi Yadav, ME-B");
+            srt.WriteLine("105, Rakesh Jha, PE-A");
+            srt.Close();
         }
     }
 }
